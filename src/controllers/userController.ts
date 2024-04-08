@@ -4,7 +4,6 @@ import { Request,Response } from "express";
 export const allUsers = async(req:Request,res:Response) =>{
  try {
     const users = await getAllUsers();
-    console.log(users)
     res.status(200).json({
         status:200,
         data:users
