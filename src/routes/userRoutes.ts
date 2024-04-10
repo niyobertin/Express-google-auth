@@ -1,8 +1,12 @@
-import { allUsers, googleAuthCallback } from "../controllers/userController";
+import { getUsers } from "../controllers/userController";
 import express from "express";
-import passport from "passport";
+import { updateUserProfile, getUserById } from "../controllers/userController";
+import upload from "../middlewares/multer";
 
-const userRoutes = express.Router();
-userRoutes.get("/", passport.authenticate("google"), googleAuthCallback);
+const userRouter = express.Router();
 
-export default userRoutes;
+userRouter.get('/', getUsers);
+userRouter.get('/:id', getUserById);
+userRouter.patch('/:id', upload.single("profileImage"), updateUserProfile);
+
+export default userRouter;

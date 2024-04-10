@@ -1,5 +1,6 @@
 import User from "../models/user";
 import { Profile } from "passport-google-oauth20";
+import { UserAttributes } from "../models/user";
 
 export const getAllUsers = async() =>{
 try {
@@ -8,6 +9,11 @@ try {
 } catch (error:any) {
     throw new Error(error.message)
 }
+}
+
+export const getUserByPk = async (id: number) => {
+  const user = await User.findByPk(id)
+  return user
 }
 
 export const createOrUpdateUser = async (profile: Profile) => {
@@ -30,5 +36,14 @@ export const createOrUpdateUser = async (profile: Profile) => {
     }
     return user;
   };
+
+export const updateUser = async (userId: number, updatedUserInfo: Partial<UserAttributes>) => {
+    const user = await User.findByPk(userId);
+    if (!user) {
+        throw new Error("User not found");
+    }
+    await user.update(updatedUserInfo, { where: { id: userId }});
+    return user;
+};
   
 
