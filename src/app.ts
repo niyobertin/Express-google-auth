@@ -26,7 +26,7 @@ app.use(Express.json());
 app.use(cors());
 
 app.use('/api/v1/', router);
-app.use('/api/v1', googleAuth)
+app.use('/', googleAuth)
 
 const port = process.env.PORT || 8080;
 app.listen(port,() =>{
