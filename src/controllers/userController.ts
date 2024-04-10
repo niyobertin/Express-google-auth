@@ -25,6 +25,7 @@ export const getUsers = async(req:Request,res:Response) =>{
 export const googleAuthCallback = async (req: Request, res: Response) => {
   try {
     const profile = req.user as Profile;
+    
     const user = await createOrUpdateUser(profile);
     const token = await generateUserToken(user)
     res.status(200).json({
