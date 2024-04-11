@@ -59,9 +59,11 @@ const generateEmailBody = (updatedFields:any) =>{
         if (updatedFields.hasOwnProperty(field)) {
             
             if(field === "profileImage"){
-                emailBody += "- " + field +"<br />"+"<img src='" + updatedFields[field] + "' alt='profile image' /><br /><br />";
+                emailBody += "- updated" + field +"<br />"+"<img src='" + updatedFields[field] + "' alt='profile image' /><br /><br />";
+            }else{
+                emailBody += "- updated" + field + ": " + updatedFields[field] + "<br /><br />";
             }
-            emailBody += "- " + field + ": " + updatedFields[field] + "<br /><br />";
+            
         }
     }
 
