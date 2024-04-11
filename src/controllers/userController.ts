@@ -51,6 +51,21 @@ export const getUserById = async (req:Request, res:Response) => {
   }
 }
 
+const generateEmailBody = (updatedFields:any) =>{
+    let emailBody = "Dear User,\n\n";
+    emailBody += "We wanted to inform you that your profile has been updated with the following information:\n\n";
+
+    for (let field in updatedFields) {
+        if (updatedFields.hasOwnProperty(field)) {
+            emailBody += "- " + field + ": " + updatedFields[field] + "\n";
+        }
+    }
+
+    emailBody += "\nYour profile is now up-to-date.\n\nIf you have any questions or need further assistance, feel free to reach out to us.\n\nThank you,\nThe Team";
+    
+    return emailBody;
+}
+
 export const updateUserProfile = async (req:Request, res:Response) => {
   try{
       const {name, email} = req.body
@@ -78,16 +93,8 @@ export const updateUserProfile = async (req:Request, res:Response) => {
 
       const updatedUser = await updateUser(id, updateInfo)
 
-      const html = `
-        
-        Dear  ${updatedUser.name}  
-        Your Profile was updated successfully
-        These Fields were updated:
-         ${updatedUser}
+      const html = generateEmailBody(updateInfo);
             
-        
-            Done at ${new Date().getFullYear()} by Team 2 with 🤍
-`;
 
       Mailer.sendMail(updatedUser.email,`Your Profile was Updated`, html)
         

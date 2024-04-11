@@ -32,19 +32,9 @@ app.use('/', googleAuth)
 
 app.get('/', async (req: Request, res: Response) => {
     
-    res.send('Welcome to the email service')
+    res.send("<a href='/auth/google'>Continue with Google</a>");
 })
 
-app.get('/testMail', async (reg: Request, res: Response) => {
-    try{
-        await Mailer.sendMail('team2.expressauth@gmail.com','Test to node mailer service','Testing the email service')
-        console.log('Email sent')
-        
-        res.send(`Email sent from ${process.env.USER} successfully `)
-    } catch (error){
-        console.error(`Error sending email: ${error}`);
-    }
-})
 
 const port = process.env.PORT || 8080;
 app.listen(port,() =>{
