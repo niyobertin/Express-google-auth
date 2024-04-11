@@ -53,15 +53,15 @@ export const getUserById = async (req:Request, res:Response) => {
 
 const generateEmailBody = (updatedFields:any) =>{
     let emailBody = "Dear User,<br /><br />";
-    emailBody += "We wanted to inform you that your profile has been updated with the following information:<br /><";
+    emailBody += "We wanted to inform you that your profile has been updated with the following information:<br />";
 
     for (let field in updatedFields) {
         if (updatedFields.hasOwnProperty(field)) {
             
             if(field === "profileImage"){
-                emailBody += "- updated" + field +"<br />"+"<img src='" + updatedFields[field] + "' alt='profile image' /><br /><br />";
+                emailBody += "- updated " + field +"<br />"+"<img style='width: 20%' src='" + updatedFields[field] + "' alt='profile image' /><br /><br />";
             }else{
-                emailBody += "- updated" + field + ": " + updatedFields[field] + "<br /><br />";
+                emailBody += "- updated " + field + ": " + updatedFields[field] + "<br /><br />";
             }
             
         }
