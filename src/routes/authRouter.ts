@@ -5,7 +5,7 @@ import passport from "passport";
 const googleAuth = Router()
 
 googleAuth.get(
-    "/google",
+    "/auth/google",
     passport.authenticate("google", { scope: ["profile", "email"] }),
   );
   

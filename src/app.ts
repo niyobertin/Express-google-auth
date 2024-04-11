@@ -28,7 +28,7 @@ app.use(Express.json());
 app.use(cors());
 
 app.use('/api/v1/', router);
-app.use('/api/v1', googleAuth)
+app.use('/', googleAuth)
 
 app.get('/', async (req: Request, res: Response) => {
     
