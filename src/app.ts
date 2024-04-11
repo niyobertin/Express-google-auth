@@ -32,7 +32,7 @@ app.use('/', googleAuth)
 
 app.get('/', async (req: Request, res: Response) => {
     
-    res.send("<a href='/auth/google'>Continue with Google</a>");
+    res.send("<div style ='text-align: center'><h1>Welcome to Our Website</h1><p>Click Below to sign in with google:</p><a href='/auth/google'>Continue with Google</a></div>");
 })
 
 
