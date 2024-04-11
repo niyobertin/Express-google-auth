@@ -14,13 +14,13 @@ class Mailer {
             }
         })
     }
-    async sendMail(to: string, subject: string, text: string){
+    async sendMail(to: string, subject: string, html: string){
 
         const mailOptions = {
             from: `${process.env.USER}`,
             to: to,
             subject: subject,
-            text: text
+            html: html
         };
 
         try{
