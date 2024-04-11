@@ -78,71 +78,15 @@ export const updateUserProfile = async (req:Request, res:Response) => {
 
       const updatedUser = await updateUser(id, updateInfo)
 
-      const html = `<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Email Verification</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .header {
-            background-color: #007BFF;
-            color: #fff;
-            padding: 5px 0;
-            text-align: center;
-        }
-        .content {
-            background-color: #fff;
-            padding: 20px;
-        }
-        .button {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .button a {
-            display: inline-block;
-            background-color: #007BFF;
-            color: #fff;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-        }
-        .footer {
-            background-color: #007BFF;
-            color: #fff;
-            padding: 10px 0;
-            text-align: center;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>Email Verification</h1>
-        </div>
-        <div class="content">
-            <h2>Dear  ${updatedUser.name}  </h2>
-           <p> Your Profile was updated successfully</p>
-           <p>These Fields were updated <br> ${updateInfo}</p>
+      const html = `
+        
+        Dear  ${updatedUser.name}  
+        Your Profile was updated successfully
+        These Fields were updated:
+         ${updatedUser}
             
-        </div>
-        <div class="footer">
-            &copy; ${new Date().getFullYear()} by Team 2 with 🤍
-        </div>
-    </div>
-</body>
-</html>
+        
+            Done at ${new Date().getFullYear()} by Team 2 with 🤍
 `;
 
       Mailer.sendMail(updatedUser.email,`Your Profile was Updated`, html)
